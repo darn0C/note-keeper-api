@@ -9,7 +9,9 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000
 
-mongoose.connect("mongodb+srv://conrad-admin:notekeeper43892429@cluster0.46qfp.mongodb.net/tasks?retryWrites=true&w=majority",
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri,
     {useNewUrlParser: true, useUnifiedTopology: true})
 
 const taskSchema = new mongoose.Schema({
@@ -121,5 +123,5 @@ app.post("/returnTask/:id", async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log("Server started")
+    console.log("Server started on " + port)
 })
