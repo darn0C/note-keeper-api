@@ -122,6 +122,12 @@ app.post("/returnTask/:id", async (req, res) => {
     res.json(tasks)
 })
 
+app.post("/killTask/:id", async (req,res) => {
+    await Task.findOneAndDelete(req.params.id)
+    const tasks = await Task.find();
+    res.json(tasks)
+})
+
 app.listen(port, () => {
     console.log("Server started on " + port)
 })
