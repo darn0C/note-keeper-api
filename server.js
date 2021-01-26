@@ -123,7 +123,8 @@ app.post("/returnTask/:id", async (req, res) => {
 })
 
 app.post("/killTask/:id", async (req,res) => {
-    await Task.findOneAndDelete(req.params.id)
+    await Task.findByIdAndRemove(req.params.id)
+
     const tasks = await Task.find();
     res.json(tasks)
 })
